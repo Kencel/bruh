@@ -2,7 +2,6 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -27,21 +26,31 @@ export default function Home() {
   }
 
   return (
-    <div className="flex justify-center">
-      <Card className="w-[50%]">
-        <div className="flex justify-center px-4">
-          <p>{catData && catData[0].breeds[0].name}</p>
+    <div className="h-[100vh] flex flex-col sm:flex-row justify-center items-center p-4">
+      <div className="w-full sm:w-[40%] h-auto text-center">  
+        <div className="text-6xl font-bold">Generate a Cat</div>
+        <div className="text-xl font-light">
+          Click the button to get your own skibidi toilet cat.
         </div>
-        <div className="flex justify-center px-4">
-          <img className="w-64" src={catData && catData[0].url}></img>
-        </div>
-        <div className="flex px-4 justify-center">
-        {catData && catData[0].breeds[0].description}
-        </div>
-        <div className="flex justify-center">
-          <Button onClick={generateNewCat}>New Cat!</Button>
+      </div>
+      <Card className="w-full sm:w-[40%] h-auto mt-4 sm:mt-0">
+        <div className="h-[95%] flex flex-col justify-center items-center p-4">
+          <div className="flex justify-center">
+            <img className="w-64" src={catData && catData[0].url} />
+          </div>  
+          <div className="m-5">
+            <div className="flex justify-center font-bold text-2xl">
+              <p>{catData && catData[0].breeds[0].name}</p>
+            </div>
+            <div className="flex justify-center text-gray-600">
+              {catData && catData[0].breeds[0].description}
+            </div>
+          </div>
+          <div className="flex justify-center p-2">
+            <Button onClick={generateNewCat}>New Cat!</Button>
+          </div>
         </div>
       </Card>
-    </div>
+    </div>  
   );
 }
