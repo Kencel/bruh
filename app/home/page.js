@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [catData, setCatData] = useState(null);
-  const url = 'https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1'
+  
 
   useEffect( () => {
     const fetchCats = async () => {
-      const data = await fetch(url, { headers: { 'x-api-key' : 'live_NzlXIedj7oabBtLf2Kvwsvwot8HcuEcH3x40F7P85w1V6K0y2bXU7JLtywLK4rYC' }});
+      const data = await fetch(process.env.NEXT_PUBLIC_CAT_URL, { headers: { 'x-api-key' : process.env.NEXT_PUBLIC_CAT_API}});
       setCatData(await data.json());
     }
     fetchCats();
@@ -21,7 +21,7 @@ export default function Home() {
   }
 
   const generateNewCat = async () => {
-    const data = await fetch(url, { headers: { 'x-api-key' : 'live_NzlXIedj7oabBtLf2Kvwsvwot8HcuEcH3x40F7P85w1V6K0y2bXU7JLtywLK4rYC' }});
+    const data = await fetch(process.env.NEXT_PUBLIC_CAT_URL, { headers: { 'x-api-key' : process.env.NEXT_PUBLIC_CAT_API }});
     setCatData(await data.json());
   }
 
